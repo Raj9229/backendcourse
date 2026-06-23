@@ -8,8 +8,9 @@ app.use(express.static(path.join(__dirname, "public")));
 const fs = require("fs");
 
 
-app.get("/", (req, res) => {  
-    res.send("Hello, World!");
+app.get("/", (req, res) => {
+    fs.readdir("./files", (err, files) => {  
+    res.render("index" , { files });
 
 });
 

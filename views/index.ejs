@@ -4,81 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <style>
-    body {
-      font-family: Arial;
-      background: #f4f4f4;
-      text-align: center;
-      margin-top: 50px;
-    }
-
-    input {
-      padding: 10px;
-      width: 250px;
-    }
-
-    button {
-      padding: 10px;
-      cursor: pointer;
-    }
-
-    ul {
-      list-style: none;
-      padding: 0;
-    }
-
-    li {
-      background: white;
-      margin: 10px auto;
-      padding: 10px;
-      width: 300px;
-      display: flex;
-      justify-content: space-between;
-    }
-
-    .delete {
-      background: red;
-      color: white;
-      border: none;
-    }
-  </style>
+    
 </head>
 <body>
     <h1>Welcome to the Index Page</h1>
 
-    <form action="/checks" , method="POST">
-        <input type="text" name="username" placeholder="Enter your username">
-        <input type="password" name="age" placeholder="Enter your age">
-        <button type="submit">Submit</button>
-    </form>
+    <% files.forEach(function(file) { %>
+        <p><%= file %></p>
+    <% }); %>  
 
-
-
-
-  <h1>My Task List</h1>
-
-  <input type="text" id="taskInput" placeholder="Enter a task">
-  <button onclick="addTask()">Add</button>
-
-  <ul id="taskList"></ul>
-
-  <script>
-    function addTask() {
-      let input = document.getElementById("taskInput");
-      let task = input.value.trim();
-
-      if (task === "") return;
-
-      let li = document.createElement("li");
-      li.innerHTML = `
-        ${task}
-        <button class="delete" onclick="this.parentElement.remove()">X</button>
-      `;
-
-      document.getElementById("taskList").appendChild(li);
-      input.value = "";
-    }
-  </script>
 
 
 
