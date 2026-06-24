@@ -9,10 +9,11 @@
 <body>
     <h1>Welcome to the Index Page</h1>
 
-    <% files.forEach(function(file) { %>
-        <p><%= file %></p>
-        <a href="/edit/<%= file %>">Edit</a>
-    <% }); %>  
+    <form action="/update/<%= filename %>" method="POST">
+        <textarea name="data"><%= data %></textarea>
+        <button type="submit">Save</button>
+    </form>
+     
 
 
 

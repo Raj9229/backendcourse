@@ -7,12 +7,13 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, "public")));
 const fs = require("fs");
 
-
+// reading file on base url
 app.get("/", (req, res) => {
     fs.readdir("./files", (err, files) => {  
     res.render("index" , { files });
 
 });
+}); 
 
 // creating files with name of current date in format dd-mm-yyyy
 app.get("/create", (req, res) => {
@@ -29,6 +30,29 @@ const fn = `${day}-${month}-${year}`;
         else res.send("File created successfully");
     })
 });
+
+//file editing route
+app.get("/edit/:filename", (req, res) => {
+    fs.readFile(`./files/${req.params.filename}`, "utf8", (err, data) => {
+        if(err) return res.send("Error reading file");
+        res.render("edit", { filename: req.params.filename, data });
+    });
+});
+
+app.post("/update/:filename", (req, res) => {
+    fs.writeFile(`./files/${req.params.filename}`, req.body.data, (err) => {
+        if(err) return res.send("Error updating file");
+        res.redirect("/");
+    });
+});
+
+
+
+
+
+
+
+
 
 
 
